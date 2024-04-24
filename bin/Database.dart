@@ -4,7 +4,7 @@ class Database {
   // Propiedades
   final String _host = 'localhost';
   final int _port = 3306;
-  final String _user = 'ivan';
+  final String _user = 'root';
 
   // Métodos
   instalacion() async {
