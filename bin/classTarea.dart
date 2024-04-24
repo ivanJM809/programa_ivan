@@ -8,9 +8,8 @@ class Tarea{
   String? descripcion;
   String? fechaCreacion;
   String? fechaVencimiento;
-  String? prioridad;
-  String? estado;
-  String? responsable;
+  String? urgencia;
+  
 
   //Contructores de la clase tarea.
   

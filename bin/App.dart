@@ -103,9 +103,19 @@ class App {
      //Fecha de creación
      stdout.writeln("¿Qué día empiezas la tarea?");
      String fechaCreacion = stdin.readLineSync() ?? "error";
+     tarea.fechaCreacion = fechaCreacion;
+     //Fecha de Vencimiento.
+     stdout.writeln("¿Cuándo finaliza esta tarea?");
+     String fechaVencimiento = stdin.readLineSync() ?? "error";
+     tarea.fechaVencimiento = fechaVencimiento;
+     //Urge o no Urge
+     stdout.writeln("¿Es urgente esta tarea?");
+     String urgencia = stdin.readLineSync() ?? "error";
+     tarea.urgencia = urgencia;
+
   
      
-    String? respuesta = stdin.readLineSync();
+    
   }
   
 
