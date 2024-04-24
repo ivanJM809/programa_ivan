@@ -31,6 +31,7 @@ class Usuario {
 
   // Constructores
   Usuario();
+  
 
   Usuario.fromMap(ResultRow map) {
     this._idusuario = map['idusuario'];
@@ -47,8 +48,7 @@ class Usuario {
       Usuario usuario = Usuario.fromMap(resultado.first);
       if (this._password == usuario.password) {
         return usuario;
-      } else
-        return false;
+      } else return false;
     } catch (e) {
       print(e);
       return false;

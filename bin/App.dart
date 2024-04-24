@@ -23,9 +23,9 @@ class App {
         print('Opción no válida');
     }
   }
-  Usuario usuario = new Usuario();
-  static menuLogueado() async {
-    Usuario usuario = new Usuario();
+  
+   static menuLogueado(Usuario usuario) async {
+
     int? opcion;
     String? nombre = usuario.nombre;
     do{
@@ -40,7 +40,6 @@ class App {
     switch(opcion){
       case 1:
         await listarUsuarios();
-        menuLogueado();
         break;
       case 2:
         await insertarTarea();
@@ -67,7 +66,7 @@ class App {
       stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');
       menuInicial();
     } else {
-       menuLogueado();
+       menuLogueado(resultado);
     }
   }
 
@@ -91,10 +90,28 @@ class App {
   
   static insertarTarea() {
     print("Introduce tu tarea");
+    // Crear una nueva tarea
+     Tarea tarea = new Tarea();
+     //Titulo
+     stdout.writeln('Introduce el Título de tu Tarea');
+     String titulo = stdin.readLineSync() ?? "error";
+     tarea.titulo = titulo;
+     //Descripción
+     stdout.writeln("¿Qué tienes que hacer?");
+     String descripcion = stdin.readLineSync()?? "error";
+     tarea.descripcion = descripcion;
+     //Fecha de creación
+     stdout.writeln("¿Qué día empiezas la tarea?");
+     String fechaCreacion = stdin.readLineSync() ?? "error";
+  
+     
     String? respuesta = stdin.readLineSync();
   }
   
+
+  //Método para listar tareas.
   static listarTarea() async{
+
     List<Tarea> listadoTareas = await Tarea().all();
     for(Tarea elemento in listadoTareas){
       stdout.writeln(elemento.nombre);
