@@ -17,6 +17,7 @@ class Database {
     try{
       await _crearDB(conn);
       await _crearTablaUsuarios(conn);
+      await _crearTablaTareas(conn);
       await conn.close();
     } catch(e){
       print(e);
@@ -51,4 +52,13 @@ class Database {
     )''');
     print('Tabla usuarios creada');
   }
+  //Método crear tabla tareas
+  _crearTablaTareas(conn) async {
+    await conn.query('''CREATE TABLE IF NOT EXISTS tareas(
+      idTarea INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      titulo VARCHAR(15) NOT NULL
+    ) ''');
+    print("Tabla de tareas creada");
+  }
+
 }

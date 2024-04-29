@@ -54,7 +54,7 @@ class App {
         print('Opción no válida');
     }
   }
-
+//LOGIN USUARIO
   static login() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce tu nombre de usuario');
@@ -69,7 +69,7 @@ class App {
        menuLogueado(resultado);
     }
   }
-
+//CREAR USUARIO
  static crearUsuario() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce un nombre de usuario');
@@ -80,7 +80,7 @@ class App {
     await usuario.insertarUsuario();
     menuInicial();
   }
-
+//lISTA USUARIOS
   static listarUsuarios()async{
     List<Usuario> listadoUsuarios = await Usuario().all();
     for(Usuario elemento in listadoUsuarios){
@@ -88,7 +88,7 @@ class App {
     }
   }
   
-  static insertarTarea() {
+  static insertarTarea()async {
     print("Introduce tu tarea");
     // Crear una nueva tarea
      Tarea tarea = new Tarea();
@@ -112,6 +112,7 @@ class App {
      stdout.writeln("¿Es urgente esta tarea?");
      String urgencia = stdin.readLineSync() ?? "error";
      tarea.urgencia = urgencia;
+     await tarea.registarTarea();
 
   
      

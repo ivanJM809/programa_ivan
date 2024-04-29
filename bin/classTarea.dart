@@ -3,7 +3,7 @@ import 'Database.dart';
 
 class Tarea{
   //Propiedades de la clase.
-
+  int? idTarea;
   String? titulo;
   String? descripcion;
   String? fechaCreacion;
@@ -17,6 +17,20 @@ class Tarea{
   Object? get nombre => null;
 
   all() {}
+
+  //Método insertar tarea
+    registarTarea() async {
+    var conn = await Database().conexion();
+    try {
+      await conn.query('INSERT INTO tareas (titulo) VALUES (?,?)',
+          [titulo]);
+      print('Tarea creada correctamente');
+    } catch (e) {
+      print(e);
+    } finally {
+      await conn.close();
+    }
+  }
 }
 
   
