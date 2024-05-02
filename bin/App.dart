@@ -30,24 +30,20 @@ class App {
     String? nombre = usuario.nombre;
     do{
       stdout.writeln('''Hola, $nombre, elige una opción:
-      1 - Listar usuarios.
-      2 - Insertar tarea.
-      3 - Listar tarea.
-      4 - Salir''');
+      1 - Insertar tarea.
+      2 - Agenda.
+      3 - Salir''');
       String respuesta = stdin.readLineSync() ?? 'e';
       opcion = int.tryParse(respuesta);
-    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3  && opcion !=4);
+    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3);
     switch(opcion){
       case 1:
-        await listarUsuarios();
-        break;
-      case 2:
         await insertarTarea();
         break;
-      case 3:
-        await listarTarea();
+      case 2:
+        await mostrarTituloTarea();
         break;
-      case 4:
+      case 3:
         print("Adios");
         break;
       default:
@@ -80,13 +76,7 @@ class App {
     await usuario.insertarUsuario();
     menuInicial();
   }
-//lISTA USUARIOS
-  static listarUsuarios()async{
-    List<Usuario> listadoUsuarios = await Usuario().all();
-    for(Usuario elemento in listadoUsuarios){
-      stdout.writeln(elemento.nombre);
-    }
-  }
+
   
   static insertarTarea()async {
     print("Introduce tu tarea");
@@ -121,14 +111,16 @@ class App {
   
 
   //Método para listar tareas.
-  static listarTarea() async{
-
-    List<Tarea> listadoTareas = await Tarea().all();
-    for(Tarea elemento in listadoTareas){
-      stdout.writeln(elemento.nombre);
+  static mostrarTituloTarea() async {
+  List<Tarea>? listadoTareas = await Tarea().all();
+  if (listadoTareas != null) {
+    for (Tarea elemento in listadoTareas) {
+      stdout.writeln(elemento.titulo);
     }
-
+  } else {
+    print("No se pudieron obtener las tareas.");
   }
+}
 
 
  

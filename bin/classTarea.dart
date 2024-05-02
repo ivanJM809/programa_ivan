@@ -12,11 +12,32 @@ class Tarea{
   
 
   //Contructores de la clase tarea.
+  Tarea();
   
+  Tarea.fromMap(ResultRow map) {
+    this.titulo = map['titulo'];
+   
+  }
+
 
   Object? get nombre => null;
+  
+  //Metodo All
 
-  all() {}
+    all() async {
+    var conn = await Database().conexion();
+
+    try {
+      var resultado = await conn.query('SELECT * FROM tareas');
+      List<Tarea> tareas =
+          resultado.map((row) => Tarea.fromMap(row)).toList();
+      return tareas;
+    } catch (e) {
+      print(e);
+    } finally {
+      await conn.close();
+    }
+  }
 
   //Método insertar tarea
     registarTarea() async {
