@@ -103,8 +103,7 @@ class App {
      String urgencia = stdin.readLineSync() ?? "error";
      tarea.urgencia = urgencia;
      await tarea.registarTarea();
-
-  
+     volverMenu(menuLogueado);
      
     
   }
@@ -120,6 +119,22 @@ class App {
   } else {
     print("No se pudieron obtener las tareas.");
   }
+}
+
+  static volverMenu(menuLogueado){
+  int? opcion;
+    do {
+      stdout.writeln('''
+        1 - Volver al menu''');
+      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
+    } while (opcion == null);
+     switch(opcion){
+      case 1:
+        menuLogueado();
+        break;
+      default:
+        print('Opción no válida');
+    }
 }
 
 

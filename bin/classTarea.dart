@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:mysql1/mysql1.dart';
 import 'Database.dart';
 
@@ -13,7 +15,7 @@ class Tarea{
 
   //Contructores de la clase tarea.
   Tarea();
-  
+
   Tarea.fromMap(ResultRow map) {
     this.titulo = map['titulo'];
    
@@ -52,6 +54,7 @@ class Tarea{
       await conn.close();
     }
   }
+  // Método volver menú
+  
 }
-
   
