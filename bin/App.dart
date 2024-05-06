@@ -38,7 +38,7 @@ class App {
     } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3);
     switch(opcion){
       case 1:
-        await insertarTarea();
+        await insertarTarea(usuario);
         break;
       case 2:
         await mostrarTituloTarea();
@@ -78,10 +78,11 @@ class App {
   }
 
   
-  static insertarTarea()async {
+  static insertarTarea(Usuario usuario)async {
     print("Introduce tu tarea");
     // Crear una nueva tarea
      Tarea tarea = new Tarea();
+     tarea.idusuario = usuario.idusuario;
      //Titulo
      stdout.writeln('Introduce el Título de tu Tarea');
      String titulo = stdin.readLineSync() ?? "error";
@@ -103,13 +104,13 @@ class App {
      String urgencia = stdin.readLineSync() ?? "error";
      tarea.urgencia = urgencia;
      await tarea.registarTarea();
-     volverMenu(menuLogueado);
+     menuLogueado(usuario);
      
     
   }
   
 
-  //Método para listar tareas.
+  //Método para ver mis tareas.
   static mostrarTituloTarea() async {
   List<Tarea>? listadoTareas = await Tarea().all();
   if (listadoTareas != null) {
@@ -120,31 +121,5 @@ class App {
     print("No se pudieron obtener las tareas.");
   }
 }
-
-  static volverMenu(menuLogueado){
-  int? opcion;
-    do {
-      stdout.writeln('''
-        1 - Volver al menu''');
-      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-    } while (opcion == null);
-     switch(opcion){
-      case 1:
-        menuLogueado();
-        break;
-      default:
-        print('Opción no válida');
-    }
 }
-
-
- 
-  
-  
-    
-  
- 
-
-  }
-  
  

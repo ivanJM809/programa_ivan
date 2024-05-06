@@ -55,7 +55,7 @@ class Database {
   //Método crear tabla tareas
   _crearTablaTareas(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS tareas(
-      idTarea INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      idusuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       titulo VARCHAR(15) NOT NULL
     ) ''');
     print("Tabla de tareas creada");
