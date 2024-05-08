@@ -32,10 +32,11 @@ class App {
       stdout.writeln('''Hola, $nombre, elige una opción:
       1 - Insertar tarea.
       2 - Agenda.
-      3 - Salir''');
+      3 - Eliminar Tarea.
+      4 - Volver al menú inicial. ''');
       String respuesta = stdin.readLineSync() ?? 'e';
       opcion = int.tryParse(respuesta);
-    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3);
+    } while(opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
     switch(opcion){
       case 1:
         await insertarTarea(usuario);
@@ -44,8 +45,10 @@ class App {
         await mostrarTituloTarea(usuario);
         break;
       case 3:
-        await borrarTarea(usuario);
+        await Tarea().borrarTarea(usuario);
         break;
+      case 4:
+        await menuInicial();  
       default:
         print('Opción no válida');
     }
@@ -116,11 +119,13 @@ class App {
   if (listadoTareas != null) {
     for (Tarea elemento in listadoTareas) {
       stdout.writeln(elemento.titulo,);
-      menuLogueado(usuario);
+      
     }
+      
   } else {
     print("No se pudieron obtener las tareas.");
   }
+   menuLogueado(usuario);
 }
 
 }

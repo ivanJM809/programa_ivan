@@ -57,8 +57,8 @@ class Tarea{
       await conn.close();
     }
   }
-  // Metodo borra tarea
-  borrarTarea(Usuario usuario) async {
+  // Metodo que borra tarea
+   borrarTarea(Usuario usuario) async {
     var conn = await Database().conexion();
     try {
       List<Tarea> listadoTareas = await all();

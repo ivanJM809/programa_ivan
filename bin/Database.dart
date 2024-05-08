@@ -16,7 +16,6 @@ class Database {
     var conn = await MySqlConnection.connect(settings);
     try{
       await _crearDB(conn);
-      await _crearTablaUsuarios(conn);
       await _crearTablaTareas(conn);
       await conn.close();
     } catch(e){
@@ -42,16 +41,8 @@ class Database {
     await conn.query('USE tareasdb');
     print('Conectado a tareasdb');
   }
-
-  //Método crear tabla usuario
-    _crearTablaUsuarios(conn) async {
-    await conn.query('''CREATE TABLE IF NOT EXISTS usuarios(
-        idusuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50) NOT NULL UNIQUE,
-        password VARCHAR(10) NOT NULL
-    )''');
-    print('Tabla usuarios creada');
   }
+
   //Método crear tabla tareas
   _crearTablaTareas(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS tareas(
@@ -64,6 +55,3 @@ class Database {
     print("Tabla de tareas creada");
   }
 
-  
-
-}
