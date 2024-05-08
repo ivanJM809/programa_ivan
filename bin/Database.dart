@@ -58,8 +58,12 @@ class Database {
       idTarea INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       idusuario INT,
       titulo VARCHAR(15) NOT NULL
+      
+
     ) ''');
     print("Tabla de tareas creada");
   }
+
+  
 
 }

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:mysql1/mysql1.dart';
 import 'Database.dart';
+import 'Usuarioo.dart';
+import 'App.dart';
 
 class Tarea{
   //Propiedades de la clase.
@@ -55,7 +57,36 @@ class Tarea{
       await conn.close();
     }
   }
-  // Método volver menú
+  // Metodo borra tarea
+  borrarTarea(Usuario usuario) async {
+    var conn = await Database().conexion();
+    try {
+      List<Tarea> listadoTareas = await all();
+      for(Tarea tarea in listadoTareas){
+        stdout.writeln('Estas son tus tareas que tienes pendientes: ${tarea.titulo}');
+      }
+      stdout.writeln("¿Qué tarea quieres eliminar?");
+      var opcion = stdin.readLineSync() ?? "e";
+      bool encontrado = false;
+      for(Tarea tarea in listadoTareas){
+        if(tarea.titulo == opcion){
+          await conn.query("DELETE FROM tareas WHERE titulo = ?", [opcion]);
+          stdout.writeln("Tarea borrada");
+          encontrado = true;
+          break;
+        }
+      }
+      if(encontrado == false ) {
+        throw ("No se ha encontrado ninguna tarea");
+      }
+    }catch(e){
+      print(e);
+      App.menuLogueado;
+    } finally {
+      await conn.close();
+    }
+
+  }
   
 }
   

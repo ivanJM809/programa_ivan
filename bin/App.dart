@@ -41,10 +41,10 @@ class App {
         await insertarTarea(usuario);
         break;
       case 2:
-        await mostrarTituloTarea();
+        await mostrarTituloTarea(usuario);
         break;
       case 3:
-        print("Adios");
+        await borrarTarea(usuario);
         break;
       default:
         print('Opción no válida');
@@ -110,16 +110,18 @@ class App {
   }
   
 
-  //Método para ver mis tareas.
-  static mostrarTituloTarea() async {
+  //Método para ver mis tareas (Agenda).
+  static mostrarTituloTarea(usuario) async {
   List<Tarea>? listadoTareas = await Tarea().all();
   if (listadoTareas != null) {
     for (Tarea elemento in listadoTareas) {
-      stdout.writeln(elemento.titulo);
+      stdout.writeln(elemento.titulo,);
+      menuLogueado(usuario);
     }
   } else {
     print("No se pudieron obtener las tareas.");
   }
 }
+
 }
  
