@@ -48,7 +48,13 @@ class Database {
     await conn.query('''CREATE TABLE IF NOT EXISTS tareas(
       idTarea INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       idusuario INT,
-      titulo VARCHAR(15) NOT NULL
+      titulo VARCHAR(15) NOT NULL,
+      descripcion VARCHAR(250),
+      fechaCreacion VARCHAR(10),
+      fechaVencimiento VARCHAR(10),
+      urgencia VARCHAR(20)
+      
+
       
 
     ) ''');

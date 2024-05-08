@@ -48,8 +48,8 @@ class Tarea{
     registarTarea() async {
     var conn = await Database().conexion();
     try {
-      await conn.query('INSERT INTO tareas (idusuario,titulo) VALUES (?,?)',
-          [idusuario,titulo]);
+      await conn.query('INSERT INTO tareas (idusuario,titulo,descripcion,fechaCreacion,fechaVencimiento,urgencia) VALUES (?,?,?,?,?,?)',
+          [idusuario,titulo,descripcion,fechaCreacion,fechaVencimiento,urgencia]);
       print('Tarea creada correctamente');
     } catch (e) {
       print(e);
